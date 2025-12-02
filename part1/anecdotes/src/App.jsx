@@ -1,51 +1,28 @@
+import { useState } from "react";
+
 export default function App() {
-  const course = {
-    name: "Half Stack application development",
-    parts: [
-      { name: "Fundamentals of React", exercises: 10 },
-      { name: "Using props to pass data", exercises: 7 },
-      { name: "State of a component", exercises: 14 },
-    ],
+  const [value, setValue] = useState(10);
+
+  const setToValue = (newValue) => {
+    console.log("value now", newValue);
+    setValue(newValue);
   };
 
   return (
     <div>
-      <Header props={course.name} />
-      <Content props={course.parts} />
-      <Total props={course.parts} />
+      {value}
+      <Button onClick={() => setToValue(1000)} text="thousand" />
+      <Button onClick={() => setToValue(0)} text="reset" />
+      <Button onClick={() => setToValue(value + 1)} text="increment" />
     </div>
   );
 }
 
-const Header = ({ props }) => {
-  return <h1>{props}</h1>;
-};
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const Content = ({ props }) => {
-  return props.map((element) => (
-    <Part
-      key={element.name}
-      part={element.name}
-      exercises={element.exercises}
-    />
-  ));
-};
-
-const Part = ({ part, exercises }) => {
-  return (
-    <p>
-      {part} {exercises}
-    </p>
-  );
-};
-
-const Total = ({ props }) => {
-  return (
-    <p>
-      {`Number of exercises ${props.reduce(
-        (sum, part) => sum + part.exercises,
-        0
-      )}`}
-    </p>
-  );
+const History = (props) => {
+  if (props.allClicks.length === 0) {
+    return <div>the app is used by pressing the buttons</div>;
+  }
+  return <div>button press history: {props.allClicks.join(" ")}</div>;
 };
