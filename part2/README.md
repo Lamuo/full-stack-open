@@ -4,6 +4,6 @@ Exercises from 2.1 to 1.14
 
 - 2.1-2.5 -> course-information
 
-- 1.6-1.11 -> phonebook
+- 2.6-2.17 -> phonebook
 
-- 1.12-1.14 -> data-countries
+- 2.18-2.20 -> data-countries
